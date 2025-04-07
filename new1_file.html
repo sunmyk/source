@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻资讯</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        .container {
+            width: 900px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .content {
+            display: flex;
+        }
+        
+        .news-section {
+            flex: 2;
+            padding-right: 20px;
+        }
+        
+        .hot-news {
+            flex: 1;
+            border-left: 1px solid #eee;
+            padding-left: 20px;
+        }
+        
+        .news-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        h4 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .news-images {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .news-images img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .author {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-align: right;
+        }
+        
+        .hot-item {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hot-item a {
+            color: #e74c3c;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .hot-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .hot-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>新闻资讯</h1>
+        <hr>
+        
+        <div class="content">
+            <div class="news-section">
+                <div class="news-item">
+                    <h4>科技创新推动经济发展新动能</h4>
+                    <div class="news-images">
+                        <img src="https://picsum.photos/300/200?random=1" alt="新闻图片1">
+                        <img src="https://picsum.photos/300/200?random=2" alt="新闻图片2">
+                    </div>
+                    <p class="author">作者：张科技 | 发布时间：2025-04-07</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>城市绿化建设取得显著成效</h4>
+                    <div class="news-images">
+                        <img src="https://picsum.photos/300/200?random=3" alt="新闻图片3">
+                        <img src="https://picsum.photos/300/200?random=4" alt="新闻图片4">
+                    </div>
+                    <p class="author">作者：李环保 | 发布时间：2025-04-06</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>国际文化交流活动在本市举行</h4>
+                    <div class="news-images">
+                        <img src="https://picsum.photos/300/200?random=5" alt="新闻图片5">
+                        <img src="https://picsum.photos/300/200?random=6" alt="新闻图片6">
+                    </div>
+                    <p class="author">作者：王文化 | 发布时间：2025-04-05</p>
+                </div>
+            </div>
+            
+            <div class="hot-news">
+                <h4>相关热文推荐</h4>
+                
+                <div class="hot-item">
+                    <a href="#">人工智能技术最新突破性进展</a>
+                    <img src="https://picsum.photos/300/200?random=7" alt="热文图片1">
+                </div>
+                
+                <div class="hot-item">
+                    <a href="#">五一假期旅游市场预测分析</a>
+                    <img src="https://picsum.photos/300/200?random=8" alt="热文图片2">
+                </div>
+                
+                <div class="hot-item">
+                    <a href="#">新能源汽车销量再创新高</a>
+                    <img src="https://picsum.photos/300/200?random=9" alt="热文图片3">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
