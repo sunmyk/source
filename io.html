@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>3D照片旋转效果</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        
+        #rotate { 
+            perspective: 600px; 
+            margin: 10px auto; 
+            width: 580px; /* 调整为与图片宽度一致 */
+        }
+        
+        h3 { 
+            text-align: center; 
+            padding: 10px 0; 
+        }
+        
+        .photo { 
+            width: 580px; 
+            height: 420px; 
+            list-style: none; 
+            margin: 10px auto;
+            position: relative; 
+            -webkit-transform: rotateX(-35deg) rotateY(0deg);
+            transform: rotateX(-35deg) rotateY(0deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: all 25s linear 1s;
+            transition: all 25s linear 1s;
+        }
+        
+        .photo li, .photo img { 
+            width: 150px; 
+            height: 250px; 
+        }
+        
+        .photo li { 
+            position: absolute; 
+            left: 0; 
+            right: 0; 
+            top: 0; 
+            bottom: 0; 
+            margin: auto;
+        }
+        
+        .photo li:nth-child(1){ 
+            transform: rotateY(0) translateZ(180px); 
+        }
+        
+        .photo li:nth-child(2){ 
+            transform: rotateY(60deg) translateZ(180px); 
+        }
+        
+        .photo li:nth-child(3){ 
+            transform: rotateY(120deg) translateZ(180px); 
+        }
+        
+        .photo li:nth-child(4){ 
+            transform: rotateY(180deg) translateZ(180px); 
+        }
+        
+        .photo li:nth-child(5){ 
+            transform: rotateY(240deg) translateZ(180px); 
+        }
+        
+        .photo li:nth-child(6){ 
+            transform: rotateY(300deg) translateZ(180px); 
+        }
+        
+        .photo:hover { 
+            transform: rotateX(-35deg) rotateY(3000deg); 
+        }
+    </style>
+</head>
+<body>
+    <div id="rotate">
+        <h3>3D照片旋转效果</h3>
+        <ul class="photo">
+            <li><img src="202-300x200.jpg" alt="图片1"></li>
+            <li><img src="266-300x200.jpg" alt="图片2"></li>
+            <li><img src="291-300x200.jpg" alt="图片3"></li>
+            <li><img src="568-300x200.jpg" alt="图片4"></li>
+            <li><img src="568-300x200.jpg" alt="图片5"></li>
+            <li><img src="291-300x200.jpg" alt="图片6"></li>
+        </ul>
+    </div>
+</body>
+</html>
