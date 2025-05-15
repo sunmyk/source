@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七彩霓虹灯</title>
+    <style>
+        body {
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .control-panel {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .neon-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .neon-light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: currentColor;
+            box-shadow: 
+                0 0 15px 5px currentColor,
+                0 0 30px 15px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+        
+        h1 {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>七彩霓虹灯效果</h1>
+    
+    <div class="control-panel">
+        <button id="startBtn">启动</button>
+        <button id="stopBtn">停止</button>
+    </div>
+    
+    <div class="neon-container">
+        <div class="neon-light" id="light1"></div>
+        <div class="neon-light" id="light2"></div>
+        <div class="neon-light" id="light3"></div>
+        <div class="neon-light" id="light4"></div>
+        <div class="neon-light" id="light5"></div>
+        <div class="neon-light" id="light6"></div>
+        <div class="neon-light" id="light7"></div>
+    </div>
+
+    <script>
+        // 七种不同的霓虹色
+        const colors = [
+            '#FF0055', // 亮粉红
+            '#FF6600', // 亮橙色
+            '#FFEE00', // 霓虹黄
+            '#00FF88', // 亮绿
+            '#00AAFF', // 亮蓝
+            '#AA00FF', // 亮紫色
+            '#FF00AA'  // 品红
+        ];
+        
+        const lights = [
+            document.getElementById('light1'),
+            document.getElementById('light2'),
+            document.getElementById('light3'),
+            document.getElementById('light4'),
+            document.getElementById('light5'),
+            document.getElementById('light6'),
+            document.getElementById('light7')
+        ];
+        
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        
+        let animationInterval;
+        let isAnimating = false;
+        
+        // 初始化灯光颜色
+        function initLights() {
+            const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
+            lights.forEach((light, index) => {
+                light.style.color = shuffledColors[index];
+                light.style.opacity = '0.3';
+            });
+        }
+        
+        // 分配颜色函数，确保每个灯颜色不同
+        function assignColors() {
+            // 创建颜色副本并打乱顺序
+            let availableColors = [...colors];
+            
+            lights.forEach(light => {
+                // 从可用颜色中随机选择一个
+                const randomIndex = Math.floor(Math.random() * availableColors.length);
+                const selectedColor = availableColors[randomIndex];
+                
+                // 设置颜色
+                light.style.color = selectedColor;
+                
+                // 从可用颜色中移除已使用的颜色
+                availableColors.splice(randomIndex, 1);
+            });
+        }
+        
+        // 动画函数
+        function animateLights() {
+            // 随机决定哪些灯闪烁
+            lights.forEach(light => {
+                if (Math.random() > 0.7) { // 30%的几率闪烁
+                    // 闪烁动画
+                    light.style.opacity = '0.3';
+                    light.style.transform = 'scale(0.9)';
+                    
+                    setTimeout(() => {
+                        light.style.opacity = '1';
+                        light.style.transform = 'scale(1.1)';
+                        
+                        setTimeout(() => {
+                            light.style.transform = 'scale(1)';
+                        }, 100);
+                    }, 150);
+                }
+            });
+            
+            // 每隔一段时间重新分配颜色
+            if (Math.random() > 0.95) { // 5%的几率重新分配颜色
+                assignColors();
+            }
+        }
+        
+        // 启动动画
+        function startAnimation() {
+            if (!isAnimating) {
+                isAnimating = true;
+                assignColors(); // 初始分配颜色
+                animationInterval = setInterval(animateLights, 300);
+                
+                // 激活所有灯
+                lights.forEach(light => {
+                    light.style.opacity = '1';
+                });
+            }
+        }
+        
+        // 停止动画
+        function stopAnimation() {
+            if (isAnimating) {
+                isAnimating = false;
+                clearInterval(animationInterval);
+                
+                // 将所有灯调暗
+                lights.forEach(light => {
+                    light.style.opacity = '0.3';
+                    light.style.transform = 'scale(1)';
+                });
+            }
+        }
+        
+        // 事件监听
+        startBtn.addEventListener('click', startAnimation);
+        stopBtn.addEventListener('click', stopAnimation);
+        
+        // 初始化
+        initLights();
+    </script>
+</body>
+</html>
